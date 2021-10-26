@@ -1,0 +1,87 @@
+#+TITLE: Assignment 0 - Rendering Triangles in _OpenGL_
+#+OPTIONS: toc:nil
+#+AUTHOR: Guilherme Gomes Haetinger - =00274792=
+#+LATEX_HEADER: \usepackage[left=0.35in,top=0.25in,right=0.35in,bottom=0.25in]{geometry}
+#+LATEX_HEADER: \usepackage[no-math]{fontspec}
+#+LATEX_HEADER: \setsansfont{Linux Libertine}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+-----
+
+* Setup
+
+I had problems building the code from the Github provided source. Thus, I
+adapted the source code to use my local _GLEW_ and _GLFW3_ setup. If you are to
+run my code, make sure you have them installed in your lib path.
+
+Not quite sure what the problem was, but it might have something to do with the
+compilation of the =vermilion= files.
+
+* Code
+
+As a task, we also had to change how the triangles were built, removing one of
+them from the final image and making the remaining one colorful. To do so, we
+have to add in a few enums:
+
+#+begin_src cpp
+enum Buffer_IDs { ArrayBuffer, ColorBuffer, NumBuffers };
+enum Attrib_IDs { vPosition = 0, vColor = 1 };
+#+end_src
+
+Also, as we remove one of the triangles, we also need to define a color array,
+leaving us with:
+
+#+begin_src cpp
+GLfloat vertices[NumVertices][2] = {{-0.90f, -0.90f}, {0.85f, -0.90f}, {-0.90f, 0.85f}};
+GLfloat colors[NumVertices][3] = {{1.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 1.0f}};
+#+end_src
+
+Once we have them defined, we bind the =ColorBuffer=, set its storage to the
+size of the array and enable it.
+
+#+begin_src cpp
+glBindBuffer(GL_ARRAY_BUFFER, Buffers[ColorBuffer]);
+glBufferStorage(GL_ARRAY_BUFFER, sizeof(colors), colors, 0);
+
+glVertexAttribPointer(vColor, 3, GL_FLOAT, GL_FALSE, 0, 0);
+glEnableVertexAttribArray(vColor);
+#+end_src
+
+All this data will go to the vertex shader and can be interpolated onto separate
+fragments processed by the fragment shader. So, the first thing we do is to
+receive and send a color =vec3= in the vertex shader:
+
+#+begin_src glsl
+#version 400 core
+
+layout( location = 0 ) in vec4 vPosition;
+layout( location = 1 ) in vec4 vColor;
+
+out vec4 color;
+
+void
+main()
+{
+    gl_Position = vPosition;
+    color = vColor;
+}
+#+end_src
+
+And the fragment shader receives and forwards it.
+
+#+begin_src glsl
+#version 450 core
+
+in vec4 color;
+out vec4 fColor;
+
+void main()
+{
+    fColor = color;
+}
+#+end_src
+
+* Results
+
+#+caption: Colorful Triangle
+#+attr_latex: scale=0.75
+[[./triangle.png]]

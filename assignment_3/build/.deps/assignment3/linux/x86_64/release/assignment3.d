@@ -1,0 +1,46 @@
+{
+    files = {
+        "bin/assignment3/linux/x86_64/release/src/matrices.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/vertex.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/options.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/triangle.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/option_window.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/camera.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/ShaderCompiler.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/main.cpp.o",
+        "bin/assignment3/linux/x86_64/release/src/LoadShaders.cpp.o"
+    },
+    values = {
+        "/usr/bin/g++",
+        {
+            "-m64",
+            "-lpthread",
+            "-lX11",
+            "-lglfw",
+            "-lGLEW",
+            "-lGL",
+            "-lfreeimage",
+            "-lglibmm-2.4",
+            "-lgobject-2.0",
+            "-lglib-2.0",
+            "-lsigc-2.0",
+            "-lgtkmm-3.0",
+            "-latkmm-1.6",
+            "-lgdkmm-3.0",
+            "-lgiomm-2.4",
+            "-lgtk-3",
+            "-lgdk-3",
+            "-lz",
+            "-latk-1.0",
+            "-lcairo-gobject",
+            "-lgio-2.0",
+            "-lpangomm-1.4",
+            "-lcairomm-1.0",
+            "-lpangocairo-1.0",
+            "-lpango-1.0",
+            "-lharfbuzz",
+            "-lcairo",
+            "-lgdk_pixbuf-2.0"
+        }
+    }
+}

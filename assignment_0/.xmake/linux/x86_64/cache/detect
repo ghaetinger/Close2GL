@@ -1,0 +1,61 @@
+{
+    find_program_gcc_arch_x86_64_plat_linux_checktoolcxx = {
+        gcc = "/usr/bin/gcc"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolld = {
+        ["g++"] = "/usr/bin/g++"
+    },
+    find_program = {
+        dmd = false,
+        zig = false,
+        gdc = false,
+        ["/usr/bin/gcc"] = "/usr/bin/gcc",
+        gcc = "/usr/bin/gcc",
+        ldc2 = false,
+        ccache = false
+    },
+    ["detect.tools.gcc.has_flags"] = {
+        ["/usr/bin/gcc_11.1.0"] = {
+            ["-save-temps"] = true,
+            ["-no-canonical-prefixes"] = true,
+            ["-time"] = true,
+            ["-B"] = true,
+            ["-E"] = true,
+            ["-S"] = true,
+            ["--param"] = true,
+            ["-c"] = true,
+            ["-pie"] = true,
+            ["-shared"] = true,
+            ["-x"] = true,
+            ["--version"] = true,
+            ["-dumpversion"] = true,
+            ["-dumpmachine"] = true,
+            ["-print-search-dirs"] = true,
+            ["--help"] = true,
+            ["-o"] = true,
+            ["-pass-exit-codes"] = true,
+            ["--target-help"] = true,
+            ["-dumpspecs"] = true,
+            ["-pipe"] = true,
+            ["-Xlinker"] = true,
+            ["-v"] = true,
+            ["-print-libgcc-file-name"] = true,
+            ["-print-multiarch"] = true,
+            ["-print-multi-directory"] = true,
+            ["-print-multi-lib"] = true,
+            ["-print-multi-os-directory"] = true,
+            ["-print-sysroot"] = true,
+            ["-print-sysroot-headers-suffix"] = true,
+            ["-Xassembler"] = true,
+            ["-Xpreprocessor"] = true
+        }
+    },
+    ["lib.detect.has_flags"] = {
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-std=c++11"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-MMD -MF"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-fdiagnostics-color=always"] = true
+    },
+    find_programver = {
+        ["/usr/bin/gcc"] = "11.1.0"
+    }
+}

@@ -1,0 +1,94 @@
+\documentclass[11pt]{article}
+
+\usepackage[left=0.65in,top=0.25in,right=0.65in,bottom=0.25in]{geometry}
+% \usepackage{biblatex}
+\usepackage{amsmath}
+\usepackage{minted}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage[no-math]{fontspec}
+\setsansfont{Linux Libertine}
+\renewcommand{\familydefault}{\sfdefault}
+\newcommand{\nl}{\newline}
+\newcommand{\hl}{\noindent\rule{\textwidth}{0.5pt}}
+\newcommand{\eg}{\textit{e.g. }}
+\newcommand{\ie}{\textit{i.e. }}
+\newcommand{\EG}{\textit{E.g. }}
+\newcommand{\IE}{\textit{I.e. }}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    filecolor=magenta
+}
+
+\title{ Final Project Proposal - INF01009 \\ An Extension of the Kelvinlet Deformation
+Inversion to Volumes with Distributed CUDA Processing Visualization }
+\author{Guilherme G. Haetinger - 00274702}
+
+\begin{document}
+  \maketitle
+
+  \hl
+
+  \section*{Previous Work}
+    My previous work on the subject entailed applying the Pixar elaborated brush
+on images and videos, warping them in the \textit{XY-axis} and the
+\textit{XYaxis + Time-axis}, respectively. The main goal of the paper was to implement
+an inversion of the non-linear \textit{Kelvinlet} equation with the
+\textit{Gauss Newton Inversion} Method. This was needed when deforming videos,
+which are hard to be reconstructed by mesh triangulation and very inefficient to
+interpolate (more details in the paper's \textit{Naive method} section). We obtained
+really good results at really good efficiency, being able to deform a FullHD video
+at \textbf{300FPS} \cite{haetinger2020regularized}.
+
+  \section*{Project Description}
+
+    Volume visualization is a technique that is broadly used. It has applications
+in medical diagnosis and simulation, as well as geological exploration. Applying
+local deformations to volumes in these sorts of applications can be of use when
+simulating possible impacts, distortions and variations of objects. \EG Kids can
+be born with an assymetrical skull and require surgery to put a side back to place.
+This could be simulated by Volume deformation, which would not only fix the position
+of the skull's surface in order to show the post-operatorium to the parents, but
+would also give an idea to how the organs might rearrange during the procedure.
+
+    Visualization techniques used nowadays can make it hard to have satisfactory
+results with fast deformation and interaction. Some work \cite{Gascon2013} that
+has been done in this area ``resolves'' this problem by implementing tetrahedral
+interpolation, \ie they seem to solve it by generating a new volume and interpolating
+the voxels by location to retrieve a renderizeable 3D mesh. This, however, can
+be considered somewhat slow, performing at \textbf{60FPS} on a relatively small
+volume ($256 \times 160 \times 122$).
+
+    As a small comparison, the first application of our inversion technique on a
+slightly larger volume ($512 \times 512 \times 100$) was able to achieve $\approx$
+\textbf{40FPS}, but with a more complex deformation process and worse hardware.
+We think that, with the following proposal, we might be able to surpass these numbers
+and/or be able to present a much more useable \textit{Real-Time} application.
+
+
+  \section*{Implementation Details}
+
+    Videos are nothing but volumes with very well defined steps in the
+\textit{Z-axis} (frames). Our implementation of the video rendering process was
+based on a three-dimensional texture. Thus, so is our volume rendering. This approach
+makes it easy to read, interpolate and interact with the values.
+
+    As we moved on to volume rendering, the efficiency of our deformation
+worsened as we had to implement a ray marcher that, for each step, calculating a
+\textit{Gauss-Newton Inversion} of a point in the 3D space. Therefore, we
+propose to implement this inversion in \textbf{CUDA}, which would instead of
+calculate the respective deformed points on each rendered step, would rewrite
+the texture! We can have a number of \textit{Bells \& Whistles} on top of this,
+making the deformation even more interactive. We intend to use the
+\textit{CUDA-OpenGL Interoperability} library to have \textbf{CUDA} read and
+write from texture buffers.
+
+
+\bibliographystyle{abbrv}
+\bibliography{Kelvinlets}
+\end{document}

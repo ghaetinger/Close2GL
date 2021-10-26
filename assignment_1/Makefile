@@ -1,0 +1,21 @@
+CC=g++
+SRC=./src/
+BIN=./bin/
+BINARY=./assignment1
+FLAGS=-lpthread -lX11 -std=c++11 -lglfw -lGLEW -lGL
+
+TRIANGLES=$(SRC)main.cpp
+TRIANGLES_OBJECT=$(BIN)main.o
+SHADER=$(SRC)ShaderCompiler.cpp
+SHADER_OBJECT=$(BIN)ShaderCompiler.o
+
+DEPENDENCIES=$(TRIANGLES_OBJECT) $(SHADER_OBJECT)
+
+$(BINARY): $(DEPENDENCIES)
+	$(CC) -o $(BINARY) $(TRIANGLES_OBJECT) $(SHADER_OBJECT) $(FLAGS)
+
+$(TRIANGLES_OBJECT): $(TRIANGLES)
+	$(CC) -o $(TRIANGLES_OBJECT) -c $(TRIANGLES) $(FLAGS)
+
+$(SHADER_OBJECT): $(SHADER)
+	$(CC) -o $(SHADER_OBJECT) -c $(SHADER) $(FLAGS)

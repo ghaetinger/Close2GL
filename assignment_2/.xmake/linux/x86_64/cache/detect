@@ -1,0 +1,156 @@
+{
+    find_program_gcc_arch_x86_64_plat_linux_checktoolld = {
+        ["g++"] = "/usr/bin/g++"
+    },
+    find_program_cuda_arch_x86_64_plat_linux_checktoolculd = {
+        nvcc = "/opt/cuda/bin/nvcc"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolmxx = {
+        gcc = "/usr/bin/gcc"
+    },
+    find_program_rust_arch_x86_64_plat_linux_checktoolrc = {
+        rustc = "/usr/bin/rustc"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolsh = {
+        ["g++"] = "/usr/bin/g++"
+    },
+    find_program_gfortran_arch_x86_64_plat_linux_checktoolfc = {
+        gfortran = "/usr/bin/gfortran"
+    },
+    ["detect.tools.gcc.has_flags"] = {
+        ["/usr/bin/gcc_11.1.0"] = {
+            ["-c"] = true,
+            ["-E"] = true,
+            ["-pass-exit-codes"] = true,
+            ["-dumpmachine"] = true,
+            ["-print-search-dirs"] = true,
+            ["-print-libgcc-file-name"] = true,
+            ["-print-multiarch"] = true,
+            ["-print-multi-directory"] = true,
+            ["--param"] = true,
+            ["-B"] = true,
+            ["-print-multi-lib"] = true,
+            ["-print-multi-os-directory"] = true,
+            ["--version"] = true,
+            ["-x"] = true,
+            ["-print-sysroot"] = true,
+            ["-pipe"] = true,
+            ["--help"] = true,
+            ["-dumpversion"] = true,
+            ["-dumpspecs"] = true,
+            ["-pie"] = true,
+            ["-shared"] = true,
+            ["-o"] = true,
+            ["-Xassembler"] = true,
+            ["-S"] = true,
+            ["--target-help"] = true,
+            ["-print-sysroot-headers-suffix"] = true,
+            ["-no-canonical-prefixes"] = true,
+            ["-Xlinker"] = true,
+            ["-time"] = true,
+            ["-save-temps"] = true,
+            ["-Xpreprocessor"] = true,
+            ["-v"] = true
+        }
+    },
+    find_program_rust_arch_x86_64_plat_linux_checktoolrcar = {
+        rustc = "/usr/bin/rustc"
+    },
+    find_program_gfortran_arch_x86_64_plat_linux_checktoolfcld = {
+        gfortran = "/usr/bin/gfortran"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolcc = {
+        gcc = "/usr/bin/gcc"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolmm = {
+        gcc = "/usr/bin/gcc"
+    },
+    find_program_rust_arch_x86_64_plat_linux_checktoolrcld = {
+        rustc = "/usr/bin/rustc"
+    },
+    find_program_gfortran_arch_x86_64_plat_linux_checktoolfcsh = {
+        gfortran = "/usr/bin/gfortran"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolas = {
+        gcc = "/usr/bin/gcc"
+    },
+    ["lib.detect.has_flags"] = {
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-pthread"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/dbus-1.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/cairomm-1.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/sigc++-2.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gtk-3.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gdk-pixbuf-2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/blkid"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gtk-3.0/unix-print"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/cairo"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/libmount"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/dbus-1.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gdkmm-3.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gio-unix-2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/pixman-1"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/libpng16"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/cloudproviders"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/harfbuzz"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/gtkmm-3.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/atkmm-1.6/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/pango-1.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/giomm-2.4/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/freetype2"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/pangomm-1.4/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/cairomm-1.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/glibmm-2.4"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/fribidi"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/giomm-2.4"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-std=c++11"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/glib-2.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/sigc++-2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/pangomm-1.4"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/at-spi-2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/atkmm-1.6"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/lzo"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/at-spi2-atk/2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/atk-1.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/include/glib-2.0"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/glibmm-2.4/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/gtkmm-3.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-MMD -MF"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-I/usr/lib/gdkmm-3.0/include"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-fdiagnostics-color=always"] = true
+    },
+    find_program_go_arch_x86_64_plat_linux_checktoolgcar = {
+        go = "/usr/bin/go"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolar = {
+        ar = "/usr/bin/ar"
+    },
+    find_program_rust_arch_x86_64_plat_linux_checktoolrcsh = {
+        rustc = "/usr/bin/rustc"
+    },
+    find_program = {
+        ccache = false,
+        ["/usr/bin/gcc"] = "/usr/bin/gcc",
+        gdc = false,
+        ldc2 = false,
+        dmd = false,
+        git = "/usr/bin/git",
+        ping = "/usr/bin/ping",
+        zig = false,
+        gcc = "/usr/bin/gcc"
+    },
+    find_programver = {
+        ["/usr/bin/gcc"] = "11.1.0"
+    },
+    find_program_gcc_arch_x86_64_plat_linux_checktoolcxx = {
+        gcc = "/usr/bin/gcc"
+    },
+    find_program_go_arch_x86_64_plat_linux_checktoolgc = {
+        go = "/usr/bin/go"
+    },
+    find_program_cuda_arch_x86_64_plat_linux_checktoolcu = {
+        nvcc = "/opt/cuda/bin/nvcc"
+    },
+    find_program_go_arch_x86_64_plat_linux_checktoolgcld = {
+        go = "/usr/bin/go"
+    }
+}

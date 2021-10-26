@@ -1,0 +1,222 @@
+{
+    tool_target_assignment2_linux_x86_64_ld = {
+        toolname = "gxx",
+        program = "/usr/bin/g++",
+        toolchain_info = {
+            arch = "x86_64",
+            plat = "linux",
+            name = "gcc",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_cu = {
+        toolname = "nvcc",
+        program = "/opt/cuda/bin/nvcc",
+        toolchain_info = {
+            name = "cuda",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "cuda_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_gcld = {
+        toolname = "go",
+        program = "/usr/bin/go",
+        toolchain_info = {
+            name = "go",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "go_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_ar = {
+        toolname = "ar",
+        program = "/usr/bin/ar",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_sh = {
+        toolname = "gxx",
+        program = "/usr/bin/g++",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_rcar = {
+        toolname = "rustc",
+        program = "/usr/bin/rustc",
+        toolchain_info = {
+            name = "rust",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "rust_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_fcld = {
+        toolname = "gfortran",
+        program = "/usr/bin/gfortran",
+        toolchain_info = {
+            name = "gfortran",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gfortran_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_cxx = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_mxx = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_rcld = {
+        toolname = "rustc",
+        program = "/usr/bin/rustc",
+        toolchain_info = {
+            name = "rust",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "rust_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_fcsh = {
+        toolname = "gfortran",
+        program = "/usr/bin/gfortran",
+        toolchain_info = {
+            name = "gfortran",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gfortran_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_culd = {
+        toolname = "nvcc",
+        program = "/opt/cuda/bin/nvcc",
+        toolchain_info = {
+            name = "cuda",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "cuda_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_cc = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_rcsh = {
+        toolname = "rustc",
+        program = "/usr/bin/rustc",
+        toolchain_info = {
+            name = "rust",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "rust_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_fc = {
+        toolname = "gfortran",
+        program = "/usr/bin/gfortran",
+        toolchain_info = {
+            name = "gfortran",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gfortran_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_mm = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_ld = {
+        toolname = "gxx",
+        program = "/usr/bin/g++",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_as = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            name = "gcc",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_rc = {
+        toolname = "rustc",
+        program = "/usr/bin/rustc",
+        toolchain_info = {
+            name = "rust",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "rust_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_gc = {
+        toolname = "go",
+        program = "/usr/bin/go",
+        toolchain_info = {
+            name = "go",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "go_arch_x86_64_plat_linux"
+        }
+    },
+    tool_target_assignment2_linux_x86_64_cxx = {
+        toolname = "gcc",
+        program = "/usr/bin/gcc",
+        toolchain_info = {
+            arch = "x86_64",
+            plat = "linux",
+            name = "gcc",
+            cachekey = "gcc_arch_x86_64_plat_linux"
+        }
+    },
+    tool_platform_linux_x86_64_gcar = {
+        toolname = "go",
+        program = "/usr/bin/go",
+        toolchain_info = {
+            name = "go",
+            plat = "linux",
+            arch = "x86_64",
+            cachekey = "go_arch_x86_64_plat_linux"
+        }
+    }
+}

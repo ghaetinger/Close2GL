@@ -1,0 +1,53 @@
+{
+    ["detect.tools.gcc.has_flags"] = {
+        ["/usr/bin/gcc_11.1.0"] = {
+            ["-save-temps"] = true,
+            ["-no-canonical-prefixes"] = true,
+            ["--version"] = true,
+            ["-B"] = true,
+            ["-E"] = true,
+            ["-pie"] = true,
+            ["--help"] = true,
+            ["-o"] = true,
+            ["-pipe"] = true,
+            ["-Xassembler"] = true,
+            ["-x"] = true,
+            ["-print-sysroot"] = true,
+            ["-time"] = true,
+            ["--param"] = true,
+            ["-Xlinker"] = true,
+            ["-pass-exit-codes"] = true,
+            ["-dumpmachine"] = true,
+            ["-S"] = true,
+            ["--target-help"] = true,
+            ["-dumpspecs"] = true,
+            ["-dumpversion"] = true,
+            ["-c"] = true,
+            ["-print-search-dirs"] = true,
+            ["-print-libgcc-file-name"] = true,
+            ["-print-multiarch"] = true,
+            ["-print-multi-directory"] = true,
+            ["-print-multi-lib"] = true,
+            ["-print-multi-os-directory"] = true,
+            ["-shared"] = true,
+            ["-print-sysroot-headers-suffix"] = true,
+            ["-v"] = true,
+            ["-Xpreprocessor"] = true
+        }
+    },
+    find_programver = {
+        ["/usr/bin/gcc"] = "11.1.0"
+    },
+    ["lib.detect.has_flags"] = {
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-MMD -MF"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-fdiagnostics-color=always"] = true,
+        ["linux_x86_64_/usr/bin/gcc_11.1.0_cxx_cxflags__-std=c++11"] = true
+    },
+    find_program = {
+        ["/usr/bin/gcc"] = "/usr/bin/gcc",
+        git = "/usr/bin/git",
+        ping = "/usr/bin/ping",
+        ccache = false,
+        gcc = "/usr/bin/gcc"
+    }
+}

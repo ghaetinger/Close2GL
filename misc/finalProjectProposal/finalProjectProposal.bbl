@@ -1,0 +1,16 @@
+\begin{thebibliography}{1}
+
+\bibitem{Gascon2013}
+J.~Gascon, J.~M. Espadero, A.~G. Perez, R.~Torres, and M.~A. Otaduy.
+\newblock Fast deformation of volume data using tetrahedral mesh rasterization.
+\newblock In {\em SIGGRAPH/EG Symp. on Comput. Animation}, pages 181--185,
+  2013.
+
+\bibitem{haetinger2020regularized}
+G.~G. Haetinger and E.~S. Gastal.
+\newblock Regularized kelvinlet inversion for real-time image deformation and
+  video time warping.
+\newblock In {\em 2020 33rd SIBGRAPI Conference on Graphics, Patterns and
+  Images (SIBGRAPI)}, pages 124--131. IEEE, 2020.
+
+\end{thebibliography}

@@ -1,0 +1,226 @@
+#+TITLE: Assignment 4 - INF01009 @@latex: \\@@ Applying Textures and Texture filtering to Arbitrary Texture-enabled Models 
+#+AUTHOR: Guilherme G. Haetinger
+#+DATE: {{{time(%Y-%m-%d)}}} @@latex: \hl@@
+#+OPTIONS: toc:nil
+
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [twocolumn, 12pt]
+#+LATEX_HEADER: \usepackage{cleveref}
+#+LATEX_HEADER: \usepackage{subfig}
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage[left=0.35in,top=0.25in,right=0.35in,bottom=0.25in]{geometry}
+#+LATEX_HEADER: \usepackage[no-math]{fontspec}
+#+LATEX_HEADER: \setsansfont{Linux Libertine}
+#+LATEX_HEADER: \renewcommand{\familydefault}{\sfdefault}
+#+LATEX_HEADER: \newcommand{\hl}{\noindent\rule{\textwidth}{0.5pt}}
+#+LATEX_HEADER: \newcommand{\ie}{\textit{i.e. }}
+#+LATEX_HEADER: \newcommand{\eg}{\textit{e.g. }}
+#+LATEX_HEADER: \newcommand{\round}[1]{\ensuremath{\lfloor#1\rceil}}
+#+LATEX_HEADER: \newcommand{\acomment}[1]{\textcolor{violet}{\emph{[#1]}}}
+#+LATEX_HEADER: \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+#+LATEX_HEADER: \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+* Introduction
+  
+  Textures have many uses in computer graphics. They can be used not
+  only for holding images, but also to hold data of any sort.
+
+  In most cases, it is necessary that these textures can have
+  data queried in continuous coordinates. Furthermore, these queries
+  can result artifacts also known as aliasing, which has been the
+  subject of many works and algorithms, *two* of which we'll be covering
+  in this report.
+  
+* New File Structure
+
+  In this assignment, we were introduced a new 3D Model representation
+  file. In this format, we get an indicator of whether the model has
+  texture coordinates or not. My new implementation checks if the
+  model is receptive to texture and constructs the /UI/ without the
+  related buttons/options.
+  
+* Setting up Texture attributes
+
+  There are essentially two attributes related to the textures:
+  - The texture coordinates, which will be taken care /per/
+    vertex. They will be set inside a vertex attribute buffer for
+    *OpenGL* and will be fed as an attribute to the *Close2GL*
+    vertices. In the latter, we must highlight that it is also divided
+    by the perspective correction;
+
+  - The texture filtering mode, which will be set as an option in our
+    =Options= class, processed both by *OpenGL*, setting the texture
+    parameters to either:
+    + =GL_NEAREST=: Nearest Neighbor;
+    + =GL_LINEAR=: Bilinear Interpolation;
+    + =GL_MIPMAP=: MipMap Pyramid with Trilinear Interpolation. It is
+      important to point out that we need to ask *OpenGL* to generate
+      the MipMapped layers. 
+
+* Close2GL Texture Filtering
+
+  In this section, we'll go over the three asked features for
+  transforming continuous texture coordinates resulted from the scan
+  conversion process to color.
+  
+** Nearest Neighbor
+
+   This is the most simple way of fetching the texture color. For a
+   given continuous coordinate $c$, we calculate the discrete
+   coordinate $c_{nn} = \round{c}$. This coordinate will be use to
+   query a color from the texture.
+
+   _What would happen if this is oversampled (more pixels than
+   coordinates)?_ The answer is quite simple: We would have chunks of
+   sequential pixels with the same color, which would highlight even
+   more harsh color changes. Check out \cref{fig:NN}.
+
+   _What would happen if this is undersampled (more coordinates than
+   coordinates)?_ The image would turn pixelated and, depending on the
+   amount of detail, can become difficult to understand. Check out \cref{fig:zoomed-out}.
+
+#+caption: Nearest Neighbor algorithm's harsh edges on top of the Mandrill image.
+#+attr_latex: :width \linewidth
+#+label: fig:NN
+[[./res/NN-mandrill.png]]
+
+** Bilinear Interpolation 
+
+   Bilinear interpolation helps us generate smooth gradients for
+   oversampled textures, removing harsh borders. The process is quite
+   simple, for continuous coordinate $C$:
+
+   #+BEGIN_EXPORT latex
+   \begin{align*}
+     a &= \begin{bmatrix}
+       \floor{c.x} \\
+       \floor{c.y}
+     \end{bmatrix},
+     b = \begin{bmatrix}
+       \ceil{c.x} \\
+       \floor{c.y}
+     \end{bmatrix},
+     c = \begin{bmatrix}
+       \floor{c.x} \\
+       \floor{c.y}
+     \end{bmatrix},
+     d = \begin{bmatrix}
+       \ceil{c.x} \\
+       \ceil{c.y}
+     \end{bmatrix} \\
+     ab &= (C.x - a.x) * a.color + (1 - (C.x - a.x)) * b.color \\
+     cd &= (C.x - c.x) * c.color + (1 - (C.x - c.x)) * d.color \\
+     color &= (C.y - a.y) * ab + (1 - (C.x - a.x)) * cd
+   \end{align*}
+   #+END_EXPORT
+
+   By the end, we'll have a very smooth surface not very prone to
+   harsh color changes when oversampled \cref{fig:Bilinear}. It still suffers from
+   aliasing when undersampled, however!
+
+#+caption: Bilinear algorithm's smooth edges on top of the Mandrill image.
+#+attr_latex: :width \linewidth
+#+label: fig:Bilinear
+[[./res/Bilinear-mandrill.png]]
+
+** MipMapped Trilinear Interpolation
+
+   Mipmapping can be done by constructing a pyramid of images, each
+   level having a degree of /blurriness/ generated by calculating a
+   mean of the closest 4 points. We, then, use levels of lower
+   resolution to render points further away in the perspective deform,
+   \ie points that ocuppy space that would be mapped to more than one
+   pixel (undersampling). By dynamically changing the level of the
+   texture fed to the viewport, we get a much moother perspective
+   result. We do so by applying *Trilinear Interpolation*, which is
+   basically doing the Bilinear interpolation on two mip levels and
+   interpolating between them.
+
+    #+begin_export latex
+    \begingroup
+    \begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \centering
+    \label{fig:angle}
+    \caption{Mipmap angled result (a) compared to Bilinear angled result (b). It is
+clear the Mipmapped image  is clearer even from an angle.}
+    \subfloat[]{\label{fig:angmip}%
+    \includegraphics[width=0.48\linewidth, height=0.48\linewidth]{res/angled-mipmap}}%
+    \hspace{0.1em}%
+    \subfloat[]{\label{fig:angbil}%
+    \includegraphics[width=0.48\linewidth, height=0.48\linewidth]{res/angled-bilinear}}%
+    \end{figure}
+    \endgroup
+    #+end_export
+
+    #+begin_export latex
+    \begingroup
+    \begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \centering
+    \label{fig:zoomed-out}
+    \caption{Zoomed out textures to compare how they behave while undersampled. It's clear (c) holds the advantage.}
+    \subfloat[Nearest Neighbor]{\label{fig:zoomnn}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/zoomed-out-nn}}%
+    \hspace{0.1em}%
+    \subfloat[Bilinear]{\label{fig:zoombl}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/zoomed-out-bilinear}}%
+    \hspace{0.1em}%
+    \subfloat[Mipmapped]{\label{fig:zoommpmp}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/zoomed-out-mipmap}}%
+    \end{figure}
+    \endgroup
+    #+end_export
+
+* Texture Modulate Shading
+
+  We add the texture process organically, meaning the texture color will replace
+  the original object color from the previous assignments. However, this makes
+  us keep track and perspective divide attributes such as the diffuse
+  coefficient and the specular component for every vertex in the Gouraud model.
+
+    #+begin_export latex
+    \begingroup
+    \begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \centering
+    \label{fig:lights}
+    \caption{All lighting models required. Obs.: The cube might not have been the best model to show these off.}
+    \subfloat[Gourad (- Specularity)]{\label{fig:gourad-spec}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/gourad-spec}}%
+    \hspace{0.1em}%
+    \subfloat[Gourad]{\label{fig:gourad}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/gourad}}%
+    \hspace{0.1em}%
+    \subfloat[Phong]{\label{fig:phong}%
+    \includegraphics[width=0.33\linewidth, height=0.48\linewidth]{res/phong}}%
+    \end{figure}
+    \endgroup
+    #+end_export
+
+* Conclusions
+
+This was definitely the easiest project of them all. There was definitely a bit
+of a learning curve both on the mipmapping attribute definition and on the
+calculation of the Pyramid. I really liked the results. I've also liked how my
+result compares to *OpenGL*'s (\cref{fig:opengl}).
+
+There are somethings I might need to fix regarding edge cases. I've also bumped
+the speed of the program to over _30FPS_ using Phong shading!
+
+    #+begin_export latex
+    \begingroup
+    \begin{figure}
+    \captionsetup[subfigure]{justification=centering}
+    \centering
+    \label{fig:opengl}
+    \caption{Close2GL mipmapping Vs. OpenGL's Mipmap result.}
+    \subfloat[Close2GL]{\label{fig:close}%
+    \includegraphics[width=0.48\linewidth, height=0.48\linewidth]{res/close2gl-checkers}}%
+    \hspace{0.1em}%
+    \subfloat[OpenGL]{\label{fig:open}%
+    \includegraphics[width=0.48\linewidth, height=0.48\linewidth]{res/opengl-checkers}}%
+    \end{figure}
+    \endgroup
+    #+end_export
